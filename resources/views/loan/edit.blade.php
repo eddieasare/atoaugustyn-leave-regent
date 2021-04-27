@@ -1,8 +1,9 @@
 <x-section title="Loan Application">
+    <a href="{{ route('loan.index')}}" class="text-primary">Back</a>
     <div class="d-flex justify-content-center">
         <div class="col-md-6 my-5">
             <h2>Edit Loan Application</h2>
-            <p>Please review and confirm changes</p>
+            <p>Please review and confirm your changes</p>
             <br>
             <form action="{{ route('loan.update', $loan->id) }}" method="post">
                 @csrf
@@ -29,10 +30,6 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="applied by">Applied By</label>
-                    <input type="text" class="form-control" value="{{ Auth::user()->name }}" name="applied_by">
-                </div>
-                <div class="form-group">
                     <label for="description">Description</label>
                     <textarea type="text" name="description" value="{{ $loan->description }}"
                         class="form-control @error('description') is-invalid @enderror">{{ $loan->description }}</textarea>
@@ -42,20 +39,7 @@
                     {{ $message}}
                 </div>
                 @enderror
-                @if ($loan->status == 1)
-                <div class="alert alert-danger" role="alert">
-                    Loan request has been cancelled, please apply for a new Loan. 
-                </div>
-                @else
-                <div class="form-group">
-                    <div class="form-check">
-                        <input class="form-check-input" name="status" type="hidden" value="0">
-                        <input class="form-check-input" name="status" type="checkbox" value="1">
-                        <label class="form-check-label text-danger" for="checkbox">Cancel Loan Request</label>
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-primary mt-3">Save Change</button>
-                @endif
+                <button type="submit" class="btn btn-success mt-3">Save Change</button>
             </form>
         </div>
     </div>

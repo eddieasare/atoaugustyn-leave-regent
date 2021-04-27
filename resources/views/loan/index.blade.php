@@ -16,7 +16,7 @@
                 <tbody>
                     @foreach ($loans as $loan )
                     <tr>
-                        <th scope="row">{{ $loan->applied_by }}</th>
+                        <th scope="row">{{ $loan->user->name }}</th>
                         <td>{{ $loan->request_amount }}</td>
                         <td>{{ $loan->created_at }}</td>
                         <td>@if ($loan->request_status == 'Approved')
@@ -34,6 +34,9 @@
                             <a href="{{ route('loan.edit',$loan->id) }}" class="text-primary"><i
                                     class="icon-copy fa fa-pencil-square-o" aria-hidden="true"></i>
                                 Edit</a>
+                            <a href="{{ route('loan.edit',$loan->id) }}" class="text-danger"><i
+                                    class="icon-copy fa fa-trash" aria-hidden="true"></i>
+                                Delete</a>
                             @else
                         <td>
                             No action required

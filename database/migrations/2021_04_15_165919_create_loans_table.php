@@ -18,7 +18,7 @@ class CreateLoansTable extends Migration
             $table->string('request_amount');
             $table->string('instal_amount');
             $table->string('description');
-            $table->string('applied_by');
+            $table->integer('user_id');
             $table->boolean('status')->default(0);
             $table->string('request_status')->nullable();
             $table->timestamps();

@@ -53,4 +53,14 @@ class User extends Authenticatable
         }
         return false;
     }
+
+    public function leaves()
+    {
+        return $this->hasMany(Leave::class, 'user_id');
+    }
+
+    public function loans()
+    {
+        return $this->hasMany(Loan::class, 'user_id');
+    }
 }

@@ -9,7 +9,7 @@ class LoanAcceptController extends Controller
 {
     public function index()
     {
-        $loans = Loan::all();
+        $loans = Loan::with('user')->get();
         return view('loan_review.index', compact('loans'));
     }
 

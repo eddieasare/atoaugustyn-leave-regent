@@ -16,7 +16,7 @@
                 <tbody>
                     @foreach ($loans as $loan )
                     <tr>
-                        <th scope="row">{{ $loan->applied_by }}</th>
+                        <th scope="row">{{ $loan->user->name }}</th>
                         <td>{{ $loan->request_amount }}</td>
                         <td>{{ $loan->created_at }}</td>
                         <td>@if ($loan->request_status == 'Approved')

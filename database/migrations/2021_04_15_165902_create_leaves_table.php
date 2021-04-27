@@ -19,7 +19,7 @@ web<?php
                 $table->string('description');
                 $table->date('start_date');
                 $table->string('end_date');
-                $table->string('applied_by');
+                $table->integer('user_id');
                 $table->boolean('status')->default(0);
                 $table->string('request_status')->nullable();
                 $table->timestamps();

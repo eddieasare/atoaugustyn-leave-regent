@@ -17,7 +17,7 @@ class LeaveController extends Controller
      */
     public function index()
     {
-        $leaves = Leave::where(Auth::user()->name, '=', 'applied_by');
+        $leaves = Leave::where(Auth::user()->id, '=', 'user_id');
         return view('leave.index', compact('leaves'));
     }
 
@@ -44,7 +44,7 @@ class LeaveController extends Controller
             'description' => 'required',
             'start_date' => 'required',
             'end_date' => 'required',
-            'applied_by' => 'required',
+            'user_id' => 'required',
         ]);
 
         Leave::create($request->all());

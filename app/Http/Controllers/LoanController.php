@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Loan;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,7 +16,8 @@ class LoanController extends Controller
      */
     public function index()
     {
-        $loans = Loan::where(Auth::user()->name, '=', 'applied_by');
+
+        $loans = Loan::with('user')->where('user_id', Auth::user()->id)->get();
         return view('loan.index', compact('loans'));
     }
 
@@ -26,7 +28,8 @@ class LoanController extends Controller
      */
     public function create()
     {
-        return view('loan.create');
+        $users = User::where(Auth::user()->id, '=', 'user_id');
+        return view('loan.create', compact('users'));
     }
 
     /**
@@ -41,7 +44,7 @@ class LoanController extends Controller
             'request_amount' => 'required',
             'instal_amount' => 'required',
             'description' => 'required',
-            'applied_by' => 'required',
+            'user_id' => 'required',
         ]);
 
         Loan::create($request->all());
@@ -83,9 +86,6 @@ class LoanController extends Controller
             'request_amount' => 'required',
             'instal_amount' => 'required',
             'description' => 'required',
-            'applied_by' => 'required',
-            'request_status' => 'nullable',
-            'status' => 'boolean',
         ]);
 
         $loan->update($request->all());

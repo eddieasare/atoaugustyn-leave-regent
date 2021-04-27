@@ -27,8 +27,7 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="applied by">Applied By</label>
-                    <input type="text" class="form-control" value="{{ Auth::user()->name }}" name="applied_by">
+                    <input type="hidden" class="form-control" value="{{ Auth::user()->id }}" name="user_id">
                 </div>
                 <div class="form-group">
                     <label for="description">Description</label>
